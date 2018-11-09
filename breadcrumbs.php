@@ -1,21 +1,19 @@
 <div class="content-block breadcrumbs">
-	<h2>
-		<a href="index.php">Home</a>
-		<i class="fas fa-angle-right"></i>
-		<span>
-			<?php
-				if (!isset($uc_name)) {
-					echo $_GET['page'];
-				} else {
-					echo $uc_name;
-				}
-			?>	
-		</span>
+	<a href="dashboard.php">Dashboard</a>
+	<i class="fas fa-angle-right"></i>
+	<span>
 		<?php
-		if (isset($_GET['id'])) {
-			echo '<i class="fas fa-angle-right"></i>';
-			echo '<span> '.$action.'</span>';
-		}
+			if (!isset($page_name)) {
+				echo $_GET['page'];
+			} else {
+				echo $page_name;
+			}
 		?>
-	</h2>
+	</span>
+	<?php
+	if (isset($_GET['id'])) {
+		echo '<i class="fas fa-angle-right"></i>';
+		echo '<span> '.$action.'</span>';
+	}
+	?>
 </div>

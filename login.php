@@ -23,10 +23,11 @@
 	if (isset($_POST['username'])){
 		$username = stripslashes($_REQUEST['username']);
 		$password = stripslashes($_REQUEST['password']);
+		$password = md5($password);
 
-		$query = $db->prepare("SELECT * FROM users WHERE user_name=:username and user_pass=:password";
-		$sth->bindParam(':username', $username, PDO::PARAM_STR);
-		$sth->bindParam(':password', md5($password), PDO::PARAM_STR);
+		$query = $db->prepare("SELECT * FROM users WHERE user_name=:username and user_pass=:password");
+		$query->bindParam(':username', $username, PDO::PARAM_STR);
+		$query->bindParam(':password', $password, PDO::PARAM_STR);
     	$query->execute();
         if($query){
 	    	$_SESSION['username'] = $username;

@@ -1,8 +1,7 @@
 <?php
 require('connect.php');
 include('auth.php');
-$pagename = "dashboard";
-$uc_name = ucfirst($pagename);
+$page_name = "Dashboard";
 ?>
 
 <html>
@@ -18,22 +17,18 @@ $uc_name = ucfirst($pagename);
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="dashboard.css">
+	<link rel="stylesheet" type="text/css" href="dashboard.min.css">
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 </head>
 <body>
-	
+
 	<?php include('sidebar.php'); ?>
 	<div class="content">
 		<div>
 			<div class="content-block breadcrumbs">
-				<h2>
-					<a href="index.php">Home</a>
-					<i class="fas fa-angle-right"></i>
-					<span><?php echo $uc_name; ?></span>
-				</h2>
+				<span><?php echo $page_name; ?></span>
 		    </div>
 		    <div class="content-block">
 		    	<p>WORK IN PROGRESS</p>

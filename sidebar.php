@@ -16,9 +16,9 @@
 			</a>
 		</li>
 		<li>
-			<a href="categories.php">
+			<a href="navigation.php">
 				<i class="far fa-fw fa-folder-open"></i>
-				<span>Categories</span>
+				<span>Navigation</span>
 			</a>
 		</li>
 		<li>

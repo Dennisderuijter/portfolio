@@ -27,7 +27,7 @@
         $query->bindParam(':username', $username, PDO::PARAM_STR);
 		$query->bindParam(':password', $password, PDO::PARAM_STR);
         $query->bindParam(':display', $username, PDO::PARAM_STR);
-        $query->bindParam(':str_date', $str_date, PDO::PARAM_STR);
+        $query->bindParam(':trn_date', $trn_date, PDO::PARAM_STR);
     	$query->execute();
         if ($query) { ?>
             <div class='form'>

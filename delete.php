@@ -2,7 +2,13 @@
 require('connect.php');
 include('auth.php');
 $action = 'Delete';
-$uc_name = ucfirst($_GET['page']);
+$page_name = $_GET['page'];
+
+$data_id = $_GET['data'].'_id';
+$query = $db->prepare("SELECT * FROM ".$_GET['data']." WHERE ".$data_id." = :id");
+$query->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
+$query->execute();
+
 ?>
 
 <html>
@@ -24,28 +30,38 @@ $uc_name = ucfirst($_GET['page']);
 
 </head>
 <body>
-	
+
 	<?php include('sidebar.php'); ?>
 	<div class="content">
 		<div>
 			<?php include('breadcrumbs.php'); ?>
 		    <div class="content-block">
-		    	<h2><?php echo $action; ?></h2>
-		    	<p>...</p>
+		    	<h2>Are you sure you want to delete this data?</h2>
+		    	<p>
+					<?php
+					while($row=$query->fetch(PDO::FETCH_ASSOC)){
+						foreach ($row as $key => $value) {
+							echo $key . ' = ' . $value . '<br>';
+						}
+					}
+					?>
+				</p>
 		    </div>
 		    <div class="content-block">
-		    	<form action="" method="post" class="new">
+		    	<form action="" method="post">
 			    	<input type="submit" name="delete" value="Delete">
 			    </form>
 		    	<?php
 		    	if(isset($_POST["delete"])){
-				 	$sql = "DELETE FROM".$_GET['page']."WHERE id = ".$_GET['id']." LIMIT 1";
-				 	if ($conn->query($sql) === TRUE) {
-				    	echo "<script type='text/javascript'>window.location.href = 'categories.php';</script>";
+					$sql = $db->prepare("DELETE FROM ".$_GET['data']." WHERE ".$data_id." = :id");
+					$sql->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
+					$sql->execute();
+				 	if ($sql) { // errorhandling is not working yet
+				    	echo "<script type='text/javascript'>window.location.href = 'dashboard.php';</script>";
 				 	} else {
-				    	echo "<script type='text/javascript'>alert('Error: " . $sql . "<br>" . $conn->error."');</script>";
+				    	echo "<script type='text/javascript'>alert('Error: " . $sql->queryString . "<br>" . $sql->errorInfo()."');</script>";
 				 	}
-				} 
+				}
 		    	?>
 		    </div>
 		</div>

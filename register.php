@@ -20,7 +20,6 @@
         $username = stripslashes($_REQUEST['username']);
         $password = stripslashes($_REQUEST['password']);
         $password = md5($password);
-
         $trn_date = date("Y-m-d H:i:s");
 
         $query = $db->prepare("INSERT INTO users (user_name, user_pass, display_name, trn_date) VALUES (:username, :password, :display, :trn_date)");
@@ -29,7 +28,9 @@
         $query->bindParam(':display', $username, PDO::PARAM_STR);
         $query->bindParam(':trn_date', $trn_date, PDO::PARAM_STR);
     	$query->execute();
-        if ($query) { ?>
+        $succes = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($succes) { ?>
             <div class='form'>
                 <h3>You are registered successfully.</h3>
                 <br/>Click here to <a href='login.php'>Login</a>

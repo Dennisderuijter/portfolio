@@ -29,7 +29,9 @@
 		$query->bindParam(':username', $username, PDO::PARAM_STR);
 		$query->bindParam(':password', $password, PDO::PARAM_STR);
     	$query->execute();
-        if($query){
+		$succes = $query->fetch(PDO::FETCH_ASSOC);
+		
+        if ($succes) {
 	    	$_SESSION['username'] = $username;
 	    	header("Location: dashboard.php");
         } else { ?>

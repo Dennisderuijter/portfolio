@@ -10,7 +10,7 @@ html, body {
     color: #495057;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, form {
   margin: 0;
 }
 
@@ -21,10 +21,6 @@ a {
 
 p {
     color: #495057;
-}
-
-form {
-    margin: 0;
 }
 
 .clearfix {
@@ -127,6 +123,15 @@ input[type=submit] {
         box-shadow: 0 1px 1px rgba(0,0,0,.05);
         h2 {
             margin-bottom: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            th {
+                padding: 15px;
+            }
+            td {
+                padding: 15px;
+            }
         }
     }
     .breadcrumbs {

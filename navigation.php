@@ -34,18 +34,18 @@ $page_name = 'Navigation';
 					<?php
 					$query = $db->prepare("SELECT * FROM nav ORDER BY nav_name");
 			    	$query->execute();
-					while($row=$query->fetch(PDO::FETCH_ASSOC)){
+					while ($row=$query->fetch(PDO::FETCH_ASSOC)) {
 						$uc_row = array_map('ucfirst', $row); ?>
 					    <li>
 							<?= $uc_row['nav_name']; ?>
 							<a href='delete.php?id=<?= $row['nav_id']; ?>&page=<?= $page_name; ?>&data=nav'>
 								<i class='far fa-times-circle'></i>
 							</a>
-							<a href='edit.php?id=<?= $row['nav_id']; ?>'>
+							<a href='edit.php?id=<?= $row['nav_id']; ?>&page=<?= $page_name; ?>&data=nav'>
 								<i class='far fa-edit'></i>
 							</a>
 						</li>
-					<?php }?>
+					<?php } ?>
 				</ul>
 		    </div>
 		    <div class="content-block">
@@ -58,18 +58,19 @@ $page_name = 'Navigation';
 			    	<input type="submit" name="new_nav-item" value="Add">
 			    </form>
 		    	<?php
-		    	if(isset($_POST["new_nav-item"])){
+		    	if (isset($_POST["new_nav-item"])) {
 					$query = $db->prepare("INSERT INTO nav (nav_name, nav_url) VALUES (:nav_name, :nav_url)");
 					$query->bindParam(':nav_name', $_POST["nav_name"], PDO::PARAM_STR);
 					$query->bindParam(':nav_url', $_POST["nav_url"], PDO::PARAM_STR);
 					$query->execute();
-				 	if ($query) { ?>
+					$succes = $query->fetch(PDO::FETCH_ASSOC);
+
+			        if ($succes) { ?>
 				    	<script type='text/javascript'>window.location.href = 'navigation.php';</script>
 				 	<?php } else { ?>
 				    	<script type='text/javascript'>alert('Error: <?= $query; ?><br><?= $query->error; ?>');</script>
 				 	<?php }
-				}
-		    	?>
+				} ?>
 		    </div>
 		</div>
 	</div>

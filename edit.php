@@ -1,7 +1,7 @@
 <?php
 require('connect.php');
 include('auth.php');
-$action = 'Delete';
+$action = 'Edit';
 $page_name = $_GET['page'];
 
 $data_id = $_GET['data'].'_id';
@@ -36,35 +36,27 @@ $query->execute();
 		<div>
 			<?php include('breadcrumbs.php'); ?>
 		    <div class="content-block">
-		    	<h2>Are you sure you want to delete this data?</h2>
-		    	<table border="1">
+		    	<h2>Edit item</h2>
+		    	<p>
 					<?php
 					while($row=$query->fetch(PDO::FETCH_ASSOC)){
-						echo '<tr>';
 						foreach ($row as $key => $value) {
-							echo '<th>'.$key.'</th>';
+							echo $key . ' = ' . $value . '<br>';
 						}
-						echo '</tr><tr>';
-						foreach ($row as $key => $value) {
-							echo '<td>'.$value.'</td>';
-						}
-						echo '</tr>';
 					}
 					?>
-				</table>
+				</p>
 		    </div>
 		    <div class="content-block">
 		    	<form action="" method="post">
-			    	<input type="submit" name="delete" value="Delete">
+			    	<input type="submit" name="edit" value="Edit">
 			    </form>
 		    	<?php
-		    	if(isset($_POST["delete"])){
-					$sql = $db->prepare("DELETE FROM ".$_GET['data']." WHERE ".$data_id." = :id");
+		    	if(isset($_POST["edit"])){
+					$sql = $db->prepare("UPDATE ".$_GET['data']." WHERE ".$data_id." = :id");
 					$sql->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
 					$sql->execute();
-					$succes = $sql->fetch(PDO::FETCH_ASSOC);
-
-			        if ($succes) {
+				 	if ($sql) { // errorhandling is not working yet
 				    	echo "<script type='text/javascript'>window.location.href = 'dashboard.php';</script>";
 				 	} else {
 				    	echo "<script type='text/javascript'>alert('Error: " . $sql->queryString . "<br>" . $sql->errorInfo()."');</script>";

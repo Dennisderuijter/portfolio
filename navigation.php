@@ -50,27 +50,13 @@ $page_name = 'Navigation';
 		    </div>
 		    <div class="content-block">
 		    	<h2>New nav-item</h2>
-		    	<form action="" method="post" class="new">
+		    	<form action="forms.php" method="post" class="new">
 					<label for="nav_name">Name</label>
 			    	<input type="text" name="nav_name" placeholder="nav-item name" required><br>
 					<label for="nav_url">URL</label>
 					<input type="text" name="nav_url" placeholder="nav-item url" required><br>
 			    	<input type="submit" name="new_nav-item" value="Add">
 			    </form>
-		    	<?php
-		    	if (isset($_POST["new_nav-item"])) {
-					$query = $db->prepare("INSERT INTO nav (nav_name, nav_url) VALUES (:nav_name, :nav_url)");
-					$query->bindParam(':nav_name', $_POST["nav_name"], PDO::PARAM_STR);
-					$query->bindParam(':nav_url', $_POST["nav_url"], PDO::PARAM_STR);
-					$query->execute();
-					$succes = $query->fetch(PDO::FETCH_ASSOC);
-
-			        if ($succes) { ?>
-				    	<script type='text/javascript'>window.location.href = 'navigation.php';</script>
-				 	<?php } else { ?>
-				    	<script type='text/javascript'>alert('Error: <?= $query; ?><br><?= $query->error; ?>');</script>
-				 	<?php }
-				} ?>
 		    </div>
 		</div>
 	</div>

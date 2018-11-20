@@ -7,14 +7,7 @@ if (isset($_POST["new_nav-item"])) {
     $query->bindParam(':nav_name', $_POST["nav_name"], PDO::PARAM_STR);
     $query->bindParam(':nav_url', $_POST["nav_url"], PDO::PARAM_STR);
     $query->execute();
-    $succes = $query->fetch(PDO::FETCH_ASSOC);
 
-    if ($succes) {
-        header('Location: navigation.php');
-    } else {
-        echo "\nPDOStatement::errorInfo():\n";
-        $arr = $db->errorInfo();
-        print_r($arr);
-    }
+    header('Location: navigation.php');
 }
 ?>

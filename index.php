@@ -17,27 +17,40 @@ $nav->execute();
     	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     	<!-- CSS -->
-    	<link rel="stylesheet" type="text/css" href="dashboard.min.css">
+        <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    	<link rel="stylesheet" href="style.min.css">
     </head>
     <body>
 
-        <div class="container">
+        <div class="container-fluid">
 
-            <header>
-                <nav>
-                    <ul>
-                        <?php while ($row=$nav->fetch(PDO::FETCH_ASSOC)) { ?>
-                            <a href="<?= $row['nav_url']; ?>">
-                                <li><?= $row['nav_name']; ?></li>
-                            </a>
-                        <?php } ?>
-                    </ul>
-                </nav>
-            </header>
+            <div class="row header">
+                <div class="col-md-6">
+                    <h1>DENNIS DE RUIJTER</h1>
+                </div>
+                <div class="col-md-6">
+                    <nav>
+                        <ul>
+                            <?php while ($row=$nav->fetch(PDO::FETCH_ASSOC)) { ?>
+                                <li>
+                                    <a href="<?= $row['nav_url']; ?>"><?= $row['nav_name']; ?></a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row content">
+                <div class="col-md-">
+
+                </div>
+            </div>
 
         </div>
 
         <!-- JavaScript -->
+        <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
     	<script type="text/javascript" src="script.js"></script>
 
     </body>

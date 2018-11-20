@@ -1,0 +1,55 @@
+$color: #383838;
+
+@font-face {
+    font-family: OpenSans;
+    src: url('OpenSans/Google Fonts - Open Sans.ttf');
+}
+
+@font-face {
+    font-family: OpenSans-Semibold;
+    src: url('OpenSans/Google Fonts - Open Sans Semibold.ttf');
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: OpenSans;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: OpenSans-Semibold;
+}
+
+.container-fluid {
+    .header {
+        color: #FFF;
+        background-color: $color;
+        h1 {
+            float: left;
+            display: inline-block;
+            margin: 0;
+            padding: 16px;
+            font-size: 27px;
+        }
+        nav {
+            float: right;
+            ul {
+                list-style: none;
+                li {
+                    float: left;
+                    padding: 20px;
+                    text-transform: uppercase;
+                    a {
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+}

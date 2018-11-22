@@ -1,5 +1,5 @@
 # Portfolio
-[WIP] Portfolio provided with CMS
+[WIP] Portfolio powered by a CMS
 
 # WORK IN PROGRESS
-This project is in development process, feel free to look at my projects within Github to see my work.
+This project is in development process, feel free to look at my Github projects to see my work.
